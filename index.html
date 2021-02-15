@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>pet-books</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main>
+        <div class="block"></div>
+        <div class="block left">
+            <form action="#">
+                <label for="bookTitle">Enter the title:</label>
+                <input type="text" id="bookTitle" value=""><br>
+                <label for="authorName">Enter the name:</label>
+                <input type="text" id="authorName" value=""><br>
+                <label for="bookImage">Load img:</label>
+                <input type="url" id="bookImage"><br>
+                <label for="descrip">Write short description:</label><br>
+                <textarea name="textarea" id="descrip" cols="30" rows="10"></textarea><br>
+                <input class="btn sub-btn" type="button" value="Submit">
+            </form>
+        </div>
+    </main>
+    <script src="index.js"></script>
+    <script src="books.js"></script>
+</body>
+</html>

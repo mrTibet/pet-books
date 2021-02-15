@@ -1,0 +1,16 @@
+body{
+    margin: 0px;
+}
+main{
+    display: flex;
+}
+.block{
+    width: 50%;
+    border: 1px dotted black;
+    height: 600px;
+}
+.left {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
