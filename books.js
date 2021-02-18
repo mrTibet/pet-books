@@ -13,4 +13,11 @@ const booklist = [
     }
 ];
 
-localStorage.setItem('books',JSON.stringify(booklist));
+localStorage.setItem('booklist',JSON.stringify(booklist));
+
+/*
+The Black Coast: The God-King Chronicles
+Mike Brooks
+https://m.media-amazon.com/images/I/41jMdl71AvL.jpg
+When the citizens of Black Keep see ships on the horizon, terror takes them because they know who is
+*/

@@ -9,11 +9,14 @@ main{
     border: 1px dotted black;
     height: 600px;
 }
-.right {
-    display: none;
-}
 .left {
     display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.right {
+    display: none;
     justify-content: center;
     align-items: center;
 }
