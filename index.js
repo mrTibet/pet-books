@@ -3,25 +3,49 @@ let bookList = someArr.slice();
 let title = document.getElementById('bookTitle'),
     author = document.getElementById('authorName'),
     url = document.getElementById('bookImage'),
-    plot = document.getElementById('descrip')
+    plot = document.getElementById('descrip'),
+    titleEd = document.getElementById('title-ed'),
+    authorEd = document.getElementById('author-ed'),
+    urlEd = document.getElementById('url-ed'),
+    plotEd = document.getElementById('descrip-ed')
     submit = document.querySelector('.sub-btn'),
     leftDiv = document.querySelector('.left');
 let postArr = [];
+let postObjs = {};
+//let btnEdit = document.querySelectorAll('.btn-edit');
+
 
 //dynamic part
 
 //function for DOMContentloaded
 
-function ready() {
+function ready(arr) {
+  if(leftDiv.firstElementChild){
+
+    leftDiv.firstElementChild.remove();
+    leftDiv.lastElementChild.remove();
+
     leftDiv.insertAdjacentHTML('afterbegin',`<ul class ='bookshow'></ul>`);
     let ulTag = document.querySelector('.bookshow');
-    bookList.forEach(function (obj){
-        ulTag.insertAdjacentHTML('afterbegin',`<button class='btn edit'>Edit</button>`);
+    arr.forEach(function (obj){
+        ulTag.insertAdjacentHTML('afterbegin',`<button class='btn btn-edit' onclick="editForm(event.target)" >Edit</button>`);
         ulTag.insertAdjacentHTML('afterbegin',`<li>${obj['title']}`);
       })
-      ulTag.insertAdjacentHTML('afterend',`<button>Add</button>`);
+      leftDiv.insertAdjacentHTML('beforeend',`<button>Add</button>`);
+  }else{
+    leftDiv.insertAdjacentHTML('afterbegin',`<ul class ='bookshow'></ul>`);
+    let ulTag = document.querySelector('.bookshow');
+    arr.forEach(function (obj){
+        ulTag.insertAdjacentHTML('afterbegin',`<button class='btn btn-edit' onclick="editForm(event.target)" >Edit</button>`);
+        ulTag.insertAdjacentHTML('afterbegin',`<li>${obj['title']}`);
+      })
+      leftDiv.insertAdjacentHTML('beforeend',`<button>Add</button>`);
+  }
       console.log('READY!')
 }
+
+
+
 /*
 document.querySelector('.edit').previousElementSibling.innerText
 bookList.forEach(function (obj) {
@@ -33,22 +57,52 @@ bookList.forEach(function (obj) {
 })
 */
 
+//edit button function
+
+/*let editForm = function (el) {
+  if(document.querySelector('.form-add')){
+    document.querySelector('.form-add').classList.add('inactive');
+    document.querySelector('.form-edit').classList.add('active');
+  }
+  
+  console.log(el.previousElementSibling.innerText)
+  bookList.forEach(function (obj) {
+    for(let key in obj){
+      if(obj[key]==el.previousElementSibling.innerText){
+        console.log(obj)
+        postObjs = obj
+        bookData(postObjs)
+        /*
+        title.value = obj['title']
+        author.value = obj['author']
+        url.value = obj['url']
+        plot.value = obj['plot']
+      }
+    }
+  })
+}
+*/
+
+
 
 //save book data to array and rewrite local storage
-function bookData() {
-    let postObjs = {};
+let bookData = function(obj) {
+    
 
-    postObjs['title'] = title.value;
-    postObjs['author'] = author.value;
-    postObjs['url'] = url.value;
-    postObjs['plot'] = plot.value;
+  obj['title'] = title.value;
+  obj['author'] = author.value;
+  obj['url'] = url.value;
+  obj['plot'] = plot.value;
 
-    bookList.push(postObjs);
+    bookList.push(obj);
 
     localStorage.setItem('booklist',JSON.stringify(bookList));
 
+    //document.querySelector('.form-add').reset();
     //console.log(localStorage.getItem('booklist'));
 }
 
-submit.addEventListener('click', bookData());
-document.addEventListener('DOMContentLoaded', ready);
+document.addEventListener('DOMContentLoaded', function(){ready(booklist)});
+
+submit.addEventListener('click', function(){bookData(postObjs)});
+submit.addEventListener('click', function(){ready(bookList)});

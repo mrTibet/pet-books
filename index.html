@@ -11,16 +11,34 @@
     <main>
         <div class="block left"></div>
         <div class="block right">
-            <form action="#">
-                <label for="bookTitle">Enter the title:</label>
-                <input type="text" id="bookTitle" value=""><br>
-                <label for="authorName">Enter the name:</label>
-                <input type="text" id="authorName" value=""><br>
-                <label for="bookImage">Load img:</label>
-                <input type="url" id="bookImage"><br>
-                <label for="descrip">Write short description:</label><br>
-                <textarea name="textarea" id="descrip" cols="30" rows="10"></textarea><br>
-                <input class="btn sub-btn" type="button" value="Submit">
+            <form class="form-add" action="#">
+                <fieldset>
+                    <legend>Add form</legend>
+                    <label for="bookTitle">Enter the title:</label>
+                    <input type="text" id="bookTitle" ><br>
+                    <label for="authorName">Enter the name:</label>
+                    <input type="text" id="authorName" ><br>
+                    <label for="bookImage">Load img:</label>
+                    <input type="url" id="bookImage"/><br>
+                    <label for="descrip">Write short description:</label><br>
+                    <textarea name="textarea" id="descrip" cols="30" rows="10"></textarea><br>
+                    <input class="btn sub-btn" type="submit" value="Submit">
+                </fieldset>
+            </form>
+            <form class="form-edit" action="#">
+                <fieldset>
+                    <legend>Edit form</legend>
+                    <label for="bookTitle">Enter the title:</label>
+                    <input type="text" id="bookTitle" value=""><br>
+                    <label for="authorName">Enter the name:</label>
+                    <input type="text" id="authorName" value=""><br>
+                    <label for="bookImage">Load img:</label>
+                    <input type="url" id="bookImage"><br>
+                    <label for="descrip">Write short description:</label><br>
+                    <textarea name="textarea" id="descrip" cols="30" rows="10"></textarea><br>
+                    <input class="btn sub-btn" type="submit" value="Submit">
+                </fieldset>
+                
             </form>
         </div>
     </main>
