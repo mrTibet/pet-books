@@ -29,3 +29,6 @@ main{
 .inactive{
     display: none;
 }
+#bookTitle {
+    width: 100px;
+}

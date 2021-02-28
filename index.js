@@ -4,14 +4,14 @@ let title = document.getElementById('bookTitle'),
     author = document.getElementById('authorName'),
     url = document.getElementById('bookImage'),
     plot = document.getElementById('descrip'),
-    titleEd = document.getElementById('title-ed'),
-    authorEd = document.getElementById('author-ed'),
-    urlEd = document.getElementById('url-ed'),
-    plotEd = document.getElementById('descrip-ed')
+    titleEd = document.querySelector('.title-ed'),
+    authorEd = document.querySelector('.author-ed'),
+    urlEd = document.querySelector('.url-ed'),
+    plotEd = document.querySelector('.descrip-ed')
     submit = document.querySelector('.sub-btn'),
     leftDiv = document.querySelector('.left');
 let postArr = [];
-let postObjs = {};
+let postObjs={};
 //let btnEdit = document.querySelectorAll('.btn-edit');
 
 
@@ -20,6 +20,7 @@ let postObjs = {};
 //function for DOMContentloaded
 
 function ready(arr) {
+  
   if(leftDiv.firstElementChild){
 
     leftDiv.firstElementChild.remove();
@@ -59,34 +60,35 @@ bookList.forEach(function (obj) {
 
 //edit button function
 
-/*let editForm = function (el) {
-  if(document.querySelector('.form-add')){
-    document.querySelector('.form-add').classList.add('inactive');
-    document.querySelector('.form-edit').classList.add('active');
-  }
-  
+//вытащить обьект из массива-изменить его-засунуть обратно в массив-обновить данные локал сторадж и динамической части
+function editForm (el) {
   console.log(el.previousElementSibling.innerText)
   bookList.forEach(function (obj) {
     for(let key in obj){
       if(obj[key]==el.previousElementSibling.innerText){
         console.log(obj)
-        postObjs = obj
-        bookData(postObjs)
-        /*
-        title.value = obj['title']
-        author.value = obj['author']
-        url.value = obj['url']
-        plot.value = obj['plot']
+        console.log(bookList.indexOf(obj))
+        
+
+        title.value = ['title']
+        author.value = ['author']
+        url.value = ['url']
+        plot.value = ['plot']
+
+        postObjs = postArr.splice(bookList.indexOf(obj),1);
+        //bookList.splice(bookList.indexOf(obj),1)
+        //ready(bookList)
+        //console.log(bookList)
+
       }
     }
   })
 }
-*/
 
 
 
 //save book data to array and rewrite local storage
-let bookData = function(obj) {
+function bookData (obj) {
     
 
   obj['title'] = title.value;
@@ -94,15 +96,17 @@ let bookData = function(obj) {
   obj['url'] = url.value;
   obj['plot'] = plot.value;
 
-    bookList.push(obj);
+    
 
     localStorage.setItem('booklist',JSON.stringify(bookList));
-
+    //ready(bookList)???
     //document.querySelector('.form-add').reset();
     //console.log(localStorage.getItem('booklist'));
 }
 
 document.addEventListener('DOMContentLoaded', function(){ready(booklist)});
 
-submit.addEventListener('click', function(){bookData(postObjs)});
-submit.addEventListener('click', function(){ready(bookList)});
+submit.addEventListener('click', function(e){
+  e.preventDefault();
+  bookData(postObjs)});
+//submit.addEventListener('click', function(){ready(bookList)});
