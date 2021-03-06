@@ -70,12 +70,12 @@ function editForm (el) {
         console.log(bookList.indexOf(obj))
         
 
-        title.value = ['title']
-        author.value = ['author']
-        url.value = ['url']
-        plot.value = ['plot']
+        title.value = obj['title']
+        author.value = obj['author']
+        url.value = obj['url']
+        plot.value = obj['plot']
 
-        postObjs = postArr.splice(bookList.indexOf(obj),1);
+        postObjs = bookList.splice(bookList.indexOf(obj),1);
         //bookList.splice(bookList.indexOf(obj),1)
         //ready(bookList)
         //console.log(bookList)
@@ -90,18 +90,19 @@ function editForm (el) {
 //save book data to array and rewrite local storage
 function bookData (obj) {
     
+  let arr = [];
 
   obj['title'] = title.value;
   obj['author'] = author.value;
   obj['url'] = url.value;
   obj['plot'] = plot.value;
 
-    
+    arr = bookList.concat(obj)
+    console.log(arr)
+    localStorage.setItem('booklist',JSON.stringify(arr));
 
-    localStorage.setItem('booklist',JSON.stringify(bookList));
-    //ready(bookList)???
     //document.querySelector('.form-add').reset();
-    //console.log(localStorage.getItem('booklist'));
+    console.log(localStorage.getItem('booklist'));
 }
 
 document.addEventListener('DOMContentLoaded', function(){ready(booklist)});
